@@ -34,14 +34,15 @@ int* c3(int* indices, int n, int* data){
     for(int i = 0; i < n; i++){//All nodes
         int start_i = indices[i];
         int end_i = indices[i+1];
-        int width_i = start_i-end_i;
+        int width_i = end_i-start_i;
         for(int j = start_i; j < end_i; j++){//CSC
             col = data[j];
             int start_j = indices[col];
             int width_j = indices[col+1] - start_j;
             int idx_i = 0;
             int idx_j = 0;
-            while(idx_i<width_i||idx_j<width_j)//matrix mult
+            //printf("%d %d\n",width_i,width_j);
+            while(idx_i<width_i&&idx_j<width_j)//matrix mult
             {
                 if(data[start_i+idx_i]==data[start_j+idx_j]){
                     result[i]++;
@@ -70,7 +71,7 @@ int main(int argc, char const *argv[])
 {
     int x[7] = {0,2,6,9,13,17,18};
     int y[18] = {1,4,0,2,3,4,1,3,4,1,2,4,5,0,1,2,3,3};
-     int* k = p1(&x[0],6);
+    int* k = p1(&x[0],6);
     int* m = c3(&x[0],6,&y[0]);
     int** l = p2_3(k,m,&x[0],&y[0],6);
 
