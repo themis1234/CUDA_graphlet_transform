@@ -94,7 +94,7 @@ int main(int argc, char const *argv[])
 
     c3<<<1,1024>>>(ind,6,data,d4);
 
-    p2_3<<<1,2>>>(d1,d4,ind,data,6,d2,d3);
+    p2_3<<<1,1024>>>(d1,d4,ind,data,6,d2,d3);
 
     cudaMemcpy(host1,d2,6*sizeof(int),cudaMemcpyDeviceToHost);
     cudaMemcpy(host2,d3,6*sizeof(int),cudaMemcpyDeviceToHost);

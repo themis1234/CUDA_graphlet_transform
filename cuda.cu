@@ -120,17 +120,17 @@ int main(int argc, char const *argv[])
     p1<<<1,1024>>>(indices,n,d1);
     cudaDeviceSynchronize();
 
-    printf("Nodes' degree found, Calculating 3-cliques...");
+    printf("Nodes' degree found, Calculating 3-cliques...\n");
 
     c3<<<4,1024>>>(indices,n,data,d4);
     cudaDeviceSynchronize();
-    printf("3-cliques found, Calculating 2-paths and biforks...");
+    printf("3-cliques found, Calculating 2-paths and biforks...\n");
 
 
 
     p2_3<<<1,1024>>>(d1,d4,indices,data,n,d2,d3);
     cudaDeviceSynchronize();
-    printf("All Done");
+    printf("All Done\n");
 
 
     // cudaMemcpy(host1,d1,n*sizeof(int),cudaMemcpyDeviceToHost);
