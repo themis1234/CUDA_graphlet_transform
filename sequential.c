@@ -69,15 +69,35 @@ int* c3(int* indices, int n, int* data){
 
 int main(int argc, char const *argv[])
 {
-    int x[7] = {0,2,6,9,13,17,18};
-    int y[18] = {1,4,0,2,3,4,1,3,4,1,2,4,5,0,1,2,3,3};
-    int* k = p1(&x[0],6);
-    int* m = c3(&x[0],6,&y[0]);
-    int** l = p2_3(k,m,&x[0],&y[0],6);
+    FILE* ind;
+    int num_ind;
+    ind = fopen("indices.txt","r");
+    fscanf(ind,"%d\n",&num_ind);
+    int* indices = malloc(sizeof(int)*num_ind);
+    for(int i = 0; i < num_ind; i++){
+        fscanf(ind,"%d\n",&indices[i]);
+    }    
+    printf("%d\n",indices[num_ind-1]);
 
-    for(int i = 0; i < 6; i ++){
-        printf("%d %d %d %d\n",k[i],l[0][i],l[1][i], m[i]);
-    }
+
+    int num_data;
+    ind = fopen("data.txt","r");
+    fscanf(ind,"%d\n",&num_data);
+    printf("%d\n",num_data);
+    int* data = malloc(sizeof(int)*num_data);
+    for(int i = 0; i < num_data; i++){
+        fscanf(ind,"%d\n",&data[i]);
+    }    
+    int n = num_ind-1;
+
+
+    int* k = p1(indices,n);
+    int* m = c3(indices,n,data);
+    int** l = p2_3(k,m,indices,data,n);
+
+    // for(int i = 0; i < n; i ++){
+    //     printf("%d %d %d %d\n",k[i],l[0][i],l[1][i], m[i]);
+    // }
 
     return 0;
 }
