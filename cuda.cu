@@ -80,7 +80,6 @@ int main(int argc, char const *argv[])
     for(int i = 0; i < num_ind; i++){
         fscanf(ind,"%d\n",&host_ind[i]);
     }    
-    printf("%d\n",host_ind[num_ind-1]);
     cudaMemcpy(indices,host_ind,num_ind*sizeof(int),cudaMemcpyHostToDevice);
 
 
@@ -91,7 +90,6 @@ int main(int argc, char const *argv[])
     int* data; 
     cudaMalloc((void**)&data,num_data*sizeof(int));
 
-    printf("%d\n",num_data);
     for(int i = 0; i < num_data; i++){
         fscanf(ind,"%d\n",&host_data[i]);
     }    
@@ -102,21 +100,13 @@ int main(int argc, char const *argv[])
     int* d2;
     int* d3;
     int* d4;
-    int* host1 = (int*)malloc(sizeof(int)*n);
-    int* host2 = (int*)malloc(sizeof(int)*n);
-
-
-
-    
-    
-    // cudaMemcpy(ind,&x[0],7*sizeof(int),cudaMemcpyHostToDevice);
-    // cudaMemcpy(data,&y[0],18*sizeof(int),cudaMemcpyHostToDevice);
 
     cudaMalloc((void**)&d1,n*sizeof(int));
     cudaMalloc((void**)&d2,n*sizeof(int));
     cudaMalloc((void**)&d3,n*sizeof(int));
     cudaMalloc((void**)&d4,n*sizeof(int));
 
+    printf("Data copied for host to device, Finding Nodes' degree...\n");
     p1<<<1,1024>>>(indices,n,d1);
     cudaDeviceSynchronize();
 

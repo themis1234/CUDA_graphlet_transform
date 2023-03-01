@@ -41,7 +41,6 @@ int* c3(int* indices, int n, int* data){
             int width_j = indices[col+1] - start_j;
             int idx_i = 0;
             int idx_j = 0;
-            //printf("%d %d\n",width_i,width_j);
             while(idx_i<width_i&&idx_j<width_j)//matrix mult
             {
                 if(data[start_i+idx_i]==data[start_j+idx_j]){
