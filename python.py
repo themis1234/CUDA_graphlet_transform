@@ -2,7 +2,7 @@ from scipy.sparse import *
 from numpy import array
 from scipy.io import mmread
 
-x = mmread("auto.mtx")
+x = mmread("delaunay_n22.mtx")
 
 y = csc_matrix(x)
 ind = y.indptr

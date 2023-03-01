@@ -78,9 +78,6 @@ int main(int argc, char const *argv[])
     int* data;
     int* host1 = (int*)malloc(sizeof(int)*6);
     int* host2 = (int*)malloc(sizeof(int)*6);
-    int* host3 = (int*)malloc(sizeof(int)*6);
-    int* host4 = (int*)malloc(sizeof(int)*6);
-
 
     cudaMalloc((void**)&ind,7*sizeof(int));
     cudaMalloc((void**)&data,18*sizeof(int));
@@ -99,20 +96,21 @@ int main(int argc, char const *argv[])
 
     p2_3<<<1,1024>>>(d1,d4,ind,data,6,d2,d3);
 
-    cudaMemcpy(host2,d2,6*sizeof(int),cudaMemcpyDeviceToHost);
-    cudaMemcpy(host3,d3,6*sizeof(int),cudaMemcpyDeviceToHost);
-    cudaMemcpy(host1,d1,6*sizeof(int),cudaMemcpyDeviceToHost);
-    cudaMemcpy(host4,d4,6*sizeof(int),cudaMemcpyDeviceToHost);
+    cudaMemcpy(host1,d2,6*sizeof(int),cudaMemcpyDeviceToHost);
+    cudaMemcpy(host2,d3,6*sizeof(int),cudaMemcpyDeviceToHost);
 
     for(int i = 0; i < 6; i++){
-        printf("%d %d %d %d\n",host1[i], host2[i],host3[i],host4[i]);
+        printf("%d %d\n",host1[i], host2[i]);
     }
-\
+    //int** l = p2_3(host,m,&x[0],&y[0],6);
+    
+
+    // for(int i = 0; i < 6; i ++){
+    //     printf("%d %d %d %d\n",host[i],l[0][i],l[1][i], m[i]);
+    // }
  
     cudaFree(d1);
     cudaFree(d4);
-    cudaFree(d2);
-    cudaFree(d3);
 
     return 0;
 }
